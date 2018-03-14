@@ -9,16 +9,16 @@ import kotlin.math.sqrt
 /**
  * Created by Pavitra on 08-03-2018.
  */
-class PhoneInfo(val context: Context) {
+class PhoneInfo(val ctx: Context) {
 
     fun checkSensor(sensor: Int): Boolean {
-        val sm = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val sm = ctx.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         return sm.getDefaultSensor(sensor) != null
     }
 
     fun getScreenRes(): Pair<Int, Int> {
-        val dm = context.resources.displayMetrics
+        val dm = ctx.resources.displayMetrics
         val width = dm.widthPixels
         val height = dm.heightPixels
 
@@ -27,7 +27,7 @@ class PhoneInfo(val context: Context) {
 
     fun getScreenSize(): Float {
         val (w, h) = getScreenRes()
-        val dm = context.resources.displayMetrics
+        val dm = ctx.resources.displayMetrics
 
         val wi = w / dm.xdpi // width in inches
         val hi = h / dm.ydpi // height in inches
@@ -36,7 +36,7 @@ class PhoneInfo(val context: Context) {
     }
 
     fun getRam(): Long {
-        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val am = ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val mi = ActivityManager.MemoryInfo()
         am.getMemoryInfo(mi)
 

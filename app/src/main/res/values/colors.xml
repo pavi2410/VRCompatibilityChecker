@@ -3,5 +3,5 @@
     <color name="colorPrimary">#ff00ff</color>
     <color name="colorPrimaryDark">#c700cb</color>
     <color name="colorAccent">#ffeb3b</color>
-    <color name="orangeText">#ff9800</color>
+    <color name="orange">#ff9800</color>
 </resources>
