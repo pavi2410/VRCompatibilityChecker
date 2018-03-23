@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="appinventor.ai_pavitragolchha.VR.MainActivity"
-    tools:showIn="@layout/activity_main"
-    android:background="@drawable/gradient_bg">
+    tools:layout_editor_absoluteY="81dp"
+    tools:showIn="@layout/activity_main">
 
     <Button
         android:id="@+id/checkButton"
@@ -18,10 +19,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/colorAccent"
+        android:padding="4dp"
         android:text="@string/check"
         android:textAlignment="center"
         android:textColor="@color/orange"
         android:textSize="30sp"
+        android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,9 +49,9 @@
 
         <TextView
             android:id="@+id/resultIcon"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:baselineAligned="false"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
             android:textSize="150sp" />
@@ -60,7 +63,8 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -77,7 +81,7 @@
                     android:id="@+id/accText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:text="@string/acc"
                     android:textAlignment="textEnd"
@@ -88,7 +92,7 @@
                     android:id="@+id/accResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:gravity="start"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorAccent"
@@ -104,7 +108,7 @@
                     android:id="@+id/gyroText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:text="@string/gyro"
                     android:textAlignment="textEnd"
@@ -115,7 +119,7 @@
                     android:id="@+id/gyroResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:gravity="start"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorAccent"
@@ -131,7 +135,7 @@
                     android:id="@+id/compassText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:text="@string/compass"
                     android:textAlignment="textEnd"
@@ -142,7 +146,7 @@
                     android:id="@+id/compassResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:gravity="start"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorAccent"
@@ -158,7 +162,7 @@
                     android:id="@+id/screenSizeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:text="@string/screen_size"
                     android:textAlignment="textEnd"
@@ -169,11 +173,12 @@
                     android:id="@+id/screenSizeResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:gravity="start"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorAccent"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -185,7 +190,7 @@
                     android:id="@+id/screenResText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:text="@string/screen_res"
                     android:textAlignment="textEnd"
@@ -196,11 +201,12 @@
                     android:id="@+id/screenResResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:gravity="start"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorAccent"
-                    android:textSize="24sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -212,7 +218,7 @@
                     android:id="@+id/androidText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:text="@string/android_version"
                     android:textAlignment="textEnd"
@@ -223,7 +229,7 @@
                     android:id="@+id/androidResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:gravity="start"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorAccent"
@@ -239,7 +245,7 @@
                     android:id="@+id/ramText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="2dp"
+                    android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:text="@string/ram"
                     android:textAlignment="textEnd"
@@ -250,7 +256,7 @@
                     android:id="@+id/ramResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:gravity="start"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorAccent"
