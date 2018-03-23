@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -17,8 +16,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val SHARE = "\uF1E0"
         const val THUMBS_UP = "\uF164"
-        const val THUMBS_DOWN = "\uF165;"
-        const val NEUTRAL_FACE = "\uF11A;"
+        const val THUMBS_DOWN = "\uF165"
+        const val NEUTRAL_FACE = "\uF11A"
         const val CHECK = "\uF00C"
         const val CROSS = "\uF00D"
         const val SUCCESS_COMMENT = "Congratulations!!! Your device fully supports VR"
@@ -26,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         const val FAIL_COMMENT = "Oops! Your device doesn't support VR"
         const val ROBOTO_THIN = "Roboto-Thin.ttf"
         const val FONTAWESOME = "fontawesome-webfont.ttf"
+    }
+
+    enum class Result {
+        SUCCESS,
+        SUCCESS_PARTIAL,
+        FAILED
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,14 +49,14 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        val tvs1 = listOf(resultComment, accText, gyroText, compassText, screenSizeText,
-                screenSizeResult, screenSizeText, screenResResult, androidText, ramText)
-        for (tv in tvs1)
-            tv.typeface = Typeface.createFromAsset(assets, Companion.ROBOTO_THIN)
+        val views1 = listOf(checkButton, resultComment, accText, gyroText, compassText, screenSizeText,
+                screenSizeResult, screenResText, screenResResult, androidText, ramText)
+        for (v in views1)
+            v.typeface = Typeface.createFromAsset(assets, Companion.ROBOTO_THIN)
 
-        val tvs2 = listOf(resultIcon, accResult, gyroResult, compassResult, androidResult, ramResult)
-        for (tv in tvs2)
-            tv.typeface = Typeface.createFromAsset(assets, Companion.FONTAWESOME)
+        val views2 = listOf(resultIcon, accResult, gyroResult, compassResult, androidResult, ramResult)
+        for (v in views2)
+            v.typeface = Typeface.createFromAsset(assets, Companion.FONTAWESOME)
 
         checkButton.setOnClickListener {
             checkButton.visibility = View.GONE
@@ -65,16 +70,14 @@ class MainActivity : AppCompatActivity() {
     fun init() {
         val result = check()
         resultIcon.text = when (result) {
-            0 -> Companion.THUMBS_UP
-            1 -> Companion.THUMBS_DOWN
-            2 -> Companion.NEUTRAL_FACE
-            else -> "error"
+            Result.SUCCESS -> Companion.THUMBS_UP
+            Result.SUCCESS_PARTIAL -> Companion.NEUTRAL_FACE
+            Result.FAILED -> Companion.THUMBS_DOWN
         }
         resultComment.text = when (result) {
-            0 -> Companion.SUCCESS_COMMENT
-            1 -> Companion.SUCCESS_PARTIAL_COMMENT
-            2 -> Companion.FAIL_COMMENT
-            else -> "error"
+            Result.SUCCESS -> Companion.SUCCESS_COMMENT
+            Result.SUCCESS_PARTIAL -> Companion.SUCCESS_PARTIAL_COMMENT
+            Result.FAILED -> Companion.FAIL_COMMENT
         }
 
         val pi = PhoneInfo(this)
@@ -93,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         ramResult.text = if (pi.getRam() > 1.5 * 1024 * 1024 * 1024) Companion.CHECK else Companion.CROSS
     }
 
-    fun check(): Int {
+    fun check(): Result {
         val pi = PhoneInfo(this)
 
         val acc = pi.checkSensor(Sensor.TYPE_ACCELEROMETER)
@@ -102,9 +105,9 @@ class MainActivity : AppCompatActivity() {
         val android = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
         return when {
-            acc && gyro && compass && android -> 0 // All things available
-            (acc || gyro || compass) && android -> 1 // Something is available
-            else -> 2 // Nothing is available
+            acc && gyro && compass && android -> Result.SUCCESS // All things available
+            (acc || gyro || compass) && android -> Result.SUCCESS_PARTIAL // Something is available
+            else -> Result.FAILED // Nothing is available
         }
     }
 
@@ -114,14 +117,14 @@ class MainActivity : AppCompatActivity() {
         paint.color = textColor
         paint.textAlign = Paint.Align.LEFT
         paint.typeface = Typeface.createFromAsset(assets, Companion.FONTAWESOME)
-        val baseline = - paint.ascent()
+        val baseline = -paint.ascent()
         val w = paint.measureText(text)
         val h = paint.descent() + baseline
 
         val image = Bitmap.createBitmap(w.toInt(), h.toInt(), Bitmap.Config.ARGB_8888)
 
         val canvas = Canvas(image)
-        canvas.drawText(text,0f, baseline, paint)
+        canvas.drawText(text, 0f, baseline, paint)
 
         return image
     }
