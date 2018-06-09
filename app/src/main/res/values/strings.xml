@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VR Compatiblity Checker</string>
+    <string name="app_name">VR Compatibility Checker</string>
     <string name="check">Check</string>
     <string name="acc">Accelerometer</string>
     <string name="compass">Compass</string>

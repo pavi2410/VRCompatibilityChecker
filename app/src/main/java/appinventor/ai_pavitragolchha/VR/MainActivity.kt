@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         const val SUCCESS_COMMENT = "Congratulations!!! Your device fully supports VR"
         const val SUCCESS_PARTIAL_COMMENT = "It's OK! Your device supports limited features of VR"
         const val FAIL_COMMENT = "Oops! Your device doesn't support VR"
-        const val ROBOTO_THIN = "Roboto-Thin.ttf"
-        const val FONTAWESOME = "fontawesome-webfont.ttf"
+        const val ROBOTO_THIN_FONT = "Roboto-Thin.ttf"
+        const val FONTAWESOME_FONT = "fontawesome-webfont.ttf"
     }
 
     enum class Result {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setImageBitmap(textToBitmap(Companion.SHARE, 40f, Color.parseColor("#ff9800")))
+        fab.setImageBitmap(textToBitmap(SHARE, 40f, Color.parseColor("#ff9800")))
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Share Function Coming Soon!", Snackbar.LENGTH_SHORT).show()
@@ -52,11 +52,11 @@ class MainActivity : AppCompatActivity() {
         val views1 = listOf(checkButton, resultComment, accText, gyroText, compassText, screenSizeText,
                 screenSizeResult, screenResText, screenResResult, androidText, ramText)
         for (v in views1)
-            v.typeface = Typeface.createFromAsset(assets, Companion.ROBOTO_THIN)
+            v.typeface = Typeface.createFromAsset(assets, ROBOTO_THIN_FONT)
 
         val views2 = listOf(resultIcon, accResult, gyroResult, compassResult, androidResult, ramResult)
         for (v in views2)
-            v.typeface = Typeface.createFromAsset(assets, Companion.FONTAWESOME)
+            v.typeface = Typeface.createFromAsset(assets, FONTAWESOME_FONT)
 
         checkButton.setOnClickListener {
             checkButton.visibility = View.GONE
@@ -70,30 +70,30 @@ class MainActivity : AppCompatActivity() {
     fun init() {
         val result = check()
         resultIcon.text = when (result) {
-            Result.SUCCESS -> Companion.THUMBS_UP
-            Result.SUCCESS_PARTIAL -> Companion.NEUTRAL_FACE
-            Result.FAILED -> Companion.THUMBS_DOWN
+            Result.SUCCESS -> THUMBS_UP
+            Result.SUCCESS_PARTIAL -> NEUTRAL_FACE
+            Result.FAILED -> THUMBS_DOWN
         }
         resultComment.text = when (result) {
-            Result.SUCCESS -> Companion.SUCCESS_COMMENT
-            Result.SUCCESS_PARTIAL -> Companion.SUCCESS_PARTIAL_COMMENT
-            Result.FAILED -> Companion.FAIL_COMMENT
+            Result.SUCCESS -> SUCCESS_COMMENT
+            Result.SUCCESS_PARTIAL -> SUCCESS_PARTIAL_COMMENT
+            Result.FAILED -> FAIL_COMMENT
         }
 
         val pi = PhoneInfo(this)
 
-        accResult.text = if (pi.checkSensor(Sensor.TYPE_ACCELEROMETER)) Companion.CHECK else Companion.CROSS
-        gyroResult.text = if (pi.checkSensor(Sensor.TYPE_GYROSCOPE)) Companion.CHECK else Companion.CROSS
-        compassResult.text = if (pi.checkSensor(Sensor.TYPE_MAGNETIC_FIELD)) Companion.CHECK else Companion.CROSS
+        accResult.text = if (pi.checkSensor(Sensor.TYPE_ACCELEROMETER)) CHECK else CROSS
+        gyroResult.text = if (pi.checkSensor(Sensor.TYPE_GYROSCOPE)) CHECK else CROSS
+        compassResult.text = if (pi.checkSensor(Sensor.TYPE_MAGNETIC_FIELD)) CHECK else CROSS
 
         screenSizeResult.text = "${"%.1f".format(pi.getScreenSize())}\""
 
         val (w, h) = pi.getScreenRes()
         screenResResult.text = "${w}x$h"
 
-        androidResult.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) Companion.CHECK else Companion.CROSS
+        androidResult.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) CHECK else CROSS
 
-        ramResult.text = if (pi.getRam() > 1.5 * 1024 * 1024 * 1024) Companion.CHECK else Companion.CROSS
+        ramResult.text = if (pi.getRam() > 1.5 * 1024 * 1024 * 1024) CHECK else CROSS
     }
 
     fun check(): Result {
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
         paint.textSize = textSize
         paint.color = textColor
         paint.textAlign = Paint.Align.LEFT
-        paint.typeface = Typeface.createFromAsset(assets, Companion.FONTAWESOME)
+        paint.typeface = Typeface.createFromAsset(assets, FONTAWESOME_FONT)
         val baseline = -paint.ascent()
         val w = paint.measureText(text)
         val h = paint.descent() + baseline
