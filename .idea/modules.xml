@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VRCompatiblityChecker.iml" filepath="$PROJECT_DIR$/VRCompatiblityChecker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VRCompatibilityChecker.iml" filepath="$PROJECT_DIR$/VRCompatibilityChecker.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
