@@ -2,10 +2,9 @@ package appinventor.ai_pavitragolchha.VR
 
 import android.app.ActivityManager
 import android.content.Context
-import android.graphics.Point
 import android.hardware.SensorManager
+import android.util.DisplayMetrics
 import android.view.WindowManager
-import java.io.BufferedReader
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -21,26 +20,16 @@ class PhoneInfo(private val ctx: Context) {
     }
 
     fun getScreenRes(): Pair<Int, Int> {
-//      val dm = ctx.resources.displayMetrics
-//      val width = dm.widthPixels
-//      val height = dm.heightPixels
+        val dm = getDisplayMetrics()
 
-//      return Pair(width, height)
-
-        val wm = ctx.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val size = Point()
-
-        wm.defaultDisplay.getRealSize(size)
-
-        return Pair(size.x, size.y)
+        return Pair(dm.widthPixels, dm.heightPixels)
     }
 
     fun getScreenSize(): Float {
-        val (w, h) = getScreenRes()
-        val dm = ctx.resources.displayMetrics
+        val dm = getDisplayMetrics()
 
-        val wi = w / dm.xdpi // width in inches
-        val hi = h / dm.ydpi // height in inches
+        val wi = dm.widthPixels / dm.xdpi // width in inches
+        val hi = dm.heightPixels / dm.ydpi // height in inches
 
         return sqrt(wi.pow(2) + hi.pow(2))
     }
@@ -52,5 +41,14 @@ class PhoneInfo(private val ctx: Context) {
         am.getMemoryInfo(mi)
 
         return mi.totalMem
+    }
+
+    private fun getDisplayMetrics(): DisplayMetrics {
+        val wm = ctx.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val dm = DisplayMetrics()
+
+        wm.defaultDisplay.getRealMetrics(dm)
+
+        return dm
     }
 }

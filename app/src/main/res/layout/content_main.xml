@@ -14,10 +14,10 @@
         android:id="@+id/checkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorAccent"
         android:padding="4dp"
         android:text="@string/check"
@@ -35,10 +35,10 @@
         android:id="@+id/resultBox"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -79,24 +79,12 @@
 
                 <TextView
                     android:id="@+id/accText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="end"
-                    android:text="@string/acc"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    style="@style/info_text_label"
+                    android:text="@string/acc" />
 
                 <TextView
                     android:id="@+id/accResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp" />
+                    style="@style/info_result_label" />
             </TableRow>
 
             <TableRow
@@ -106,24 +94,12 @@
 
                 <TextView
                     android:id="@+id/gyroText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="end"
-                    android:text="@string/gyro"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    style="@style/info_text_label"
+                    android:text="@string/gyro" />
 
                 <TextView
                     android:id="@+id/gyroResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp" />
+                    style="@style/info_result_label" />
             </TableRow>
 
             <TableRow
@@ -133,24 +109,12 @@
 
                 <TextView
                     android:id="@+id/compassText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="end"
-                    android:text="@string/compass"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    style="@style/info_text_label"
+                    android:text="@string/compass" />
 
                 <TextView
                     android:id="@+id/compassResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp" />
+                    style="@style/info_result_label" />
             </TableRow>
 
             <TableRow
@@ -160,25 +124,12 @@
 
                 <TextView
                     android:id="@+id/screenSizeText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="end"
-                    android:text="@string/screen_size"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    style="@style/info_text_label"
+                    android:text="@string/screen_size" />
 
                 <TextView
                     android:id="@+id/screenSizeResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    style="@style/info_result_label" />
             </TableRow>
 
             <TableRow
@@ -188,25 +139,12 @@
 
                 <TextView
                     android:id="@+id/screenResText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="end"
-                    android:text="@string/screen_res"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    style="@style/info_text_label"
+                    android:text="@string/screen_res" />
 
                 <TextView
                     android:id="@+id/screenResResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    style="@style/info_result_label" />
             </TableRow>
 
             <TableRow
@@ -216,24 +154,12 @@
 
                 <TextView
                     android:id="@+id/androidText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="end"
-                    android:text="@string/android_version"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    style="@style/info_text_label"
+                    android:text="@string/android_version" />
 
                 <TextView
                     android:id="@+id/androidResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp" />
+                    style="@style/info_result_label" />
             </TableRow>
 
             <TableRow
@@ -243,24 +169,12 @@
 
                 <TextView
                     android:id="@+id/ramText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
-                    android:gravity="end"
-                    android:text="@string/ram"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    style="@style/info_text_label"
+                    android:text="@string/ram" />
 
                 <TextView
                     android:id="@+id/ramResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:gravity="start"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="24sp" />
+                    style="@style/info_result_label" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
