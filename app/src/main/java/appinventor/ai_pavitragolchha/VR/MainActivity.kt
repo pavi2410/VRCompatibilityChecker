@@ -1,20 +1,20 @@
 package appinventor.ai_pavitragolchha.VR
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.hardware.Sensor
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val SHARE = "\uF1E0"
         const val THUMBS_UP = "\uF164"
         const val THUMBS_DOWN = "\uF165"
         const val NEUTRAL_FACE = "\uF11A"
@@ -38,17 +38,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setImageBitmap(textToBitmap(SHARE, 40f, Color.parseColor("#ff9800")))
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Share Function Coming Soon!", Snackbar.LENGTH_SHORT).show()
-        }
-
-        fab.setOnLongClickListener {
-            Toast.makeText(this, "Share Result", Toast.LENGTH_SHORT).show()
-            true
-        }
-
         val views1 = listOf(checkButton, resultComment, accText, gyroText, compassText, screenSizeText,
                 screenSizeResult, screenResText, screenResResult, androidText, ramText)
         for (v in views1)
@@ -61,13 +50,12 @@ class MainActivity : AppCompatActivity() {
         checkButton.setOnClickListener {
             checkButton.visibility = View.GONE
             resultBox.visibility = View.VISIBLE
-            fab.visibility = View.VISIBLE
 
             init()
         }
     }
 
-    fun init() {
+    private fun init() {
         val result = check()
         resultIcon.text = when (result) {
             Result.SUCCESS -> THUMBS_UP
@@ -86,10 +74,10 @@ class MainActivity : AppCompatActivity() {
         gyroResult.text = if (pi.checkSensor(Sensor.TYPE_GYROSCOPE)) CHECK else CROSS
         compassResult.text = if (pi.checkSensor(Sensor.TYPE_MAGNETIC_FIELD)) CHECK else CROSS
 
-        screenSizeResult.text = "${"%.1f".format(pi.getScreenSize())}\""
+        screenSizeResult.text = getString(R.string.screen_size_result).format(pi.getScreenSize())
 
         val (w, h) = pi.getScreenRes()
-        screenResResult.text = "${w}x$h"
+        screenResResult.text = getString(R.string.screen_res_result).format(w, h)
 
         androidResult.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) CHECK else CROSS
 

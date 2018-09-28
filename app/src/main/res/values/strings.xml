@@ -8,4 +8,6 @@
     <string name="screen_res">Screen Resolution</string>
     <string name="android_version">Android Version</string>
     <string name="ram">RAM</string>
+    <string name="screen_size_result">%.1f"</string>
+    <string name="screen_res_result">%d✕%d</string>
 </resources>

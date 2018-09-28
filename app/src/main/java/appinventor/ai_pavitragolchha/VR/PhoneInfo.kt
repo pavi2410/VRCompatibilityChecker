@@ -2,27 +2,37 @@ package appinventor.ai_pavitragolchha.VR
 
 import android.app.ActivityManager
 import android.content.Context
+import android.graphics.Point
 import android.hardware.SensorManager
+import android.view.WindowManager
+import java.io.BufferedReader
 import kotlin.math.pow
 import kotlin.math.sqrt
 
 /**
  * Created by Pavitra on 08-03-2018.
  */
-class PhoneInfo(val ctx: Context) {
+class PhoneInfo(private val ctx: Context) {
 
     fun checkSensor(sensor: Int): Boolean {
         val sm = ctx.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
-        return sm.getDefaultSensor(sensor) != null
+        return sm.getSensorList(sensor).size > 0
     }
 
     fun getScreenRes(): Pair<Int, Int> {
-        val dm = ctx.resources.displayMetrics
-        val width = dm.widthPixels
-        val height = dm.heightPixels
+//      val dm = ctx.resources.displayMetrics
+//      val width = dm.widthPixels
+//      val height = dm.heightPixels
 
-        return Pair(width, height)
+//      return Pair(width, height)
+
+        val wm = ctx.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val size = Point()
+
+        wm.defaultDisplay.getRealSize(size)
+
+        return Pair(size.x, size.y)
     }
 
     fun getScreenSize(): Float {
@@ -38,6 +48,7 @@ class PhoneInfo(val ctx: Context) {
     fun getRam(): Long {
         val am = ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val mi = ActivityManager.MemoryInfo()
+
         am.getMemoryInfo(mi)
 
         return mi.totalMem
