@@ -1,13 +1,3 @@
 <resources>
     <string name="app_name">VR Compatibility Checker</string>
-    <string name="check">Check</string>
-    <string name="acc">Accelerometer</string>
-    <string name="compass">Compass</string>
-    <string name="gyro">Gyroscope</string>
-    <string name="screen_size">Screen Size</string>
-    <string name="screen_res">Screen Resolution</string>
-    <string name="android_version">Android Version</string>
-    <string name="ram">RAM</string>
-    <string name="screen_size_result">%.1f"</string>
-    <string name="screen_res_result">%d✕%d</string>
 </resources>

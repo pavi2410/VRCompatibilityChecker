@@ -19,6 +19,8 @@ class PhoneInfo(private val ctx: Context) {
         return sm.getSensorList(sensor).size > 0
     }
 
+    fun getScreenDensity(): Float = getDisplayMetrics().density
+
     fun getScreenRes(): Pair<Int, Int> {
         val dm = getDisplayMetrics()
 
