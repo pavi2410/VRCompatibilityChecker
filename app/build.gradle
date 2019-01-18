@@ -5,17 +5,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'androidkey'
-            keyPassword 'android'
-            storeFile file('F:/App_Inventor/android_beta.keystore')
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'androidkey'
+//            keyPassword 'android'
+//            storeFile file('E:/App_Inventor/android_beta.keystore')
+//        }
+//    }
     compileSdkVersion 28
     defaultConfig {
         applicationId 'appinventor.ai_pavitragolchha.VR'
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'

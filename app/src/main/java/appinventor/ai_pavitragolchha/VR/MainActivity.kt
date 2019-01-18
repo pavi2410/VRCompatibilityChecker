@@ -5,6 +5,7 @@ import android.hardware.Sensor.TYPE_ACCELEROMETER
 import android.hardware.Sensor.TYPE_GRAVITY
 import android.os.Build
 import android.os.Bundle
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
-        val results: ArrayList<String> = ArrayList()
-
         val pi = PhoneInfo(this)
         val accelerometer = pi.checkSensor(TYPE_ACCELEROMETER)
         val compass = pi.checkSensor(TYPE_GRAVITY)
@@ -32,14 +31,17 @@ class MainActivity : AppCompatActivity() {
         val androidVersion = Build.VERSION.SDK_INT
         val ram = (pi.getRam() / (1024.0 * 1024.0 * 1024.0)).round()
 
-        results.add(accelerometer.toYesNo())
-        results.add(compass.toYesNo())
-        results.add(gyro.toYesNo())
-        results.add("$screenDensity dpi")
-        results.add("$screenSize\"")
-        results.add("$w ✕ $h")
-        results.add(androidVersion.toString())
-        results.add("$ram GB")
+        val results = ArrayList<Item>()
+        results.run {
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "Accelerometer", accelerometer))
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "Compass", compass))
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "Gyroscope", gyro))
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "Screen Density", "$screenDensity dpi"))
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "Screen Size", "$screenSize\""))
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "Screen Resolution", "$w ✕ $h"))
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "Android Version", androidVersion.toString()))
+            add(Item(ItemType.Check, R.drawable.ic_launcher_foreground, "RAM", "$ram GB"))
+        }
 
 
         recyclerView = details_list.apply {
@@ -47,11 +49,17 @@ class MainActivity : AppCompatActivity() {
 
             layoutManager = LinearLayoutManager(context)
 
-            adapter = MyAdapter(results)
+            adapter = DetailsListAdapter(results)
         }
     }
-
-    // Extension utils
-    private fun Double.round() = Math.round(this * 100) / 100.0
-    private fun Boolean.toYesNo() = if (this) "Yes" else "No"
 }
+
+enum class ItemType {
+    Check, Text
+}
+
+data class Item(val itemType: ItemType, @DrawableRes val icon: Int, val name: String, val value: Any)
+
+
+// Extension utils
+private fun Double.round() = Math.round(this * 100) / 100.0
