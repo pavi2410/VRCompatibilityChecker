@@ -5,13 +5,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-//    signingConfigs {
-//        config {
-//            keyAlias 'androidkey'
-//            keyPassword 'android'
-//            storeFile file('E:/App_Inventor/android_beta.keystore')
-//        }
-//    }
     compileSdkVersion 28
     defaultConfig {
         applicationId 'appinventor.ai_pavitragolchha.VR'
@@ -32,9 +25,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation 'androidx.cardview:cardview:1.0.0'
 }

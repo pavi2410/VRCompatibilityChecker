@@ -12,13 +12,11 @@ class DetailsListAdapter(private val items: ArrayList<Item>) : RecyclerView.Adap
     override fun getItemViewType(position: Int): Int = items[position].itemType.ordinal
 
     class CheckViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val icon: ImageView = view.findViewById(R.id.icon)
         val name: TextView = view.findViewById(R.id.name)
         val value: ImageView = view.findViewById(R.id.value)
     }
 
     class TextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val icon: ImageView = view.findViewById(R.id.icon)
         val name: TextView = view.findViewById(R.id.name)
         val value: TextView = view.findViewById(R.id.value)
     }
@@ -26,20 +24,18 @@ class DetailsListAdapter(private val items: ArrayList<Item>) : RecyclerView.Adap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (ItemType.values()[viewType]) {
-            ItemType.Check -> CheckViewHolder(inflater.inflate(R.layout.check_view_holder, parent, false))
-            ItemType.Text -> TextViewHolder(inflater.inflate(R.layout.text_view_holder, parent, false))
+            ItemType.CHECK -> CheckViewHolder(inflater.inflate(R.layout.check_view_item, parent, false))
+            ItemType.TEXT -> TextViewHolder(inflater.inflate(R.layout.text_view_item, parent, false))
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, pos: Int) {
         when (holder) {
             is CheckViewHolder -> {
-                holder.icon.setImageResource(items[pos].icon)
                 holder.name.text = items[pos].name
-                holder.value.setImageResource(items[pos].value as Int)
+                holder.value.setImageResource(if (items[pos].value as Boolean) R.drawable.check else R.drawable.cross)
             }
             is TextViewHolder -> {
-                holder.icon.setImageResource(items[pos].icon)
                 holder.name.text = items[pos].name
                 holder.value.text = items[pos].value as String
             }
