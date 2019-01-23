@@ -1,9 +1,6 @@
 package appinventor.ai_pavitragolchha.VR
 
-import android.hardware.Sensor
-import android.hardware.Sensor.TYPE_ACCELEROMETER
-import android.hardware.Sensor.TYPE_GRAVITY
-import android.os.Build
+import android.hardware.Sensor.*
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,22 +20,31 @@ class MainActivity : AppCompatActivity() {
         val phoneInfo = PhoneInfo(this)
         val accelerometer = phoneInfo.checkSensor(TYPE_ACCELEROMETER)
         val compass = phoneInfo.checkSensor(TYPE_GRAVITY)
-        val gyro = phoneInfo.checkSensor(Sensor.TYPE_GYROSCOPE)
+        val gyro = phoneInfo.checkSensor(TYPE_GYROSCOPE)
         val screenSize = phoneInfo.getScreenSize().toDouble().round()
-        val (width, height) = phoneInfo.getScreenRes()
-        val androidVersion = Build.VERSION.RELEASE
-        val ram = (phoneInfo.getRam() / (1024.0 * 1024.0 * 1024.0)).round()
+        val ram = phoneInfo.getRam()
 
-        val results = ArrayList<Item>()
-        results.run {
-            add(Item(ItemType.CHECK, "Accelerometer", accelerometer))
-            add(Item(ItemType.CHECK, "Compass", compass))
-            add(Item(ItemType.CHECK, "Gyroscope", gyro))
-            add(Item(ItemType.TEXT, "Screen Size", "$screenSize\""))
-            add(Item(ItemType.TEXT, "Screen Resolution", "$width ✕ $height"))
-            add(Item(ItemType.TEXT, "Android Version", androidVersion))
-            add(Item(ItemType.TEXT, "RAM", "$ram GB"))
+        /*
+            Accelerometer = required
+            Gyro = required
+            Screen Size >= 5"
+            Android >= KitKat
+            RAM >= 2 GB
+        */
+        if (accelerometer and gyro and (screenSize >= 5) and (ram >= 2.GB)) {
+            message.text = getString(R.string.success_message)
+            icon.setImageResource(R.drawable.check)
+        } else {
+            message.text = getString(R.string.fail_message)
+            icon.setImageResource(R.drawable.cross)
         }
+
+        val results = arrayListOf(
+                Item("Accelerometer", accelerometer),
+                Item("Compass", compass),
+                Item("Gyroscope", gyro),
+                Item("Screen Size", screenSize >= 5.0),
+                Item("RAM", ram >= 2.GB))
 
         recyclerView = details_list.apply {
             setHasFixedSize(true)
@@ -50,11 +56,10 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-enum class ItemType {
-    CHECK, TEXT
-}
-
-data class Item(val itemType: ItemType, val name: String, val value: Any)
+data class Item(val name: String, val value: Boolean)
 
 // Extension utils
-private fun Double.round() = Math.round(this * 100) / 100.0
+private fun Double.round() = Math.round(this * 10) / 10
+
+private val Int.GB: Int
+    get() = this * 1_000_000_000

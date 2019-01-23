@@ -19,12 +19,6 @@ class PhoneInfo(private val ctx: Context) {
         return sm.getSensorList(sensor).size > 0
     }
 
-    fun getScreenRes(): Pair<Int, Int> {
-        val dm = getDisplayMetrics()
-
-        return Pair(dm.widthPixels, dm.heightPixels)
-    }
-
     fun getScreenSize(): Float {
         val dm = getDisplayMetrics()
 

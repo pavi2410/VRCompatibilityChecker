@@ -14,13 +14,13 @@
         android:layout_weight="3"
         android:gravity="start"
         android:textSize="24sp"
-        tools:text="@tools:sample/first_names" />
+        tools:text="@tools:sample/full_names" />
 
     <ImageView
         android:id="@+id/value"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:gravity="end"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/check" />
 
 </LinearLayout>
