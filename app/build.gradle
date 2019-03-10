@@ -4,23 +4,50 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+// -- Read keystore.properties --
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+// -- Read admob.properties --
+def admobPropertiesFile = rootProject.file("admob.properties")
+def admobProperties = new Properties()
+admobProperties.load(new FileInputStream(admobPropertiesFile))
+
 android {
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId 'appinventor.ai_pavitragolchha.VR'
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 13
-        versionName '7.0'
+        versionCode 14
+        versionName '7.1'
     }
     buildTypes {
         release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            def admobAppId = admobProperties['appId']
+            manifestPlaceholders = [admobAppId: admobAppId]
+            buildConfigField("String", "ADMOB_APP_ID", "\"$admobAppId\"")
+            resValue "string", "banner_ad_unit_id", admobProperties['bannerAdUnitId']
         }
         debug {
             applicationIdSuffix '.test'
             versionNameSuffix '-test'
+            manifestPlaceholders = [admobAppId: "ca-app-pub-3940256099942544~3347511713"]
+            buildConfigField("String", "ADMOB_APP_ID", "\"ca-app-pub-3940256099942544~3347511713\"")
+            resValue "string", "banner_ad_unit_id", "ca-app-pub-3940256099942544/6300978111"
         }
     }
 }
@@ -30,5 +57,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads-lite:17.1.3'
 }

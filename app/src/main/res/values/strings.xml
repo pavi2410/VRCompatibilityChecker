@@ -2,4 +2,5 @@
     <string name="app_name">VR Compatibility Checker</string>
     <string name="success_message">Congratulations! Your device is compatible</string>
     <string name="fail_message">Oops! Your device is not compatible</string>
+    <string name="description_result_icon">Result icon</string>
 </resources>
