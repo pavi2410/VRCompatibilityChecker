@@ -11,7 +11,6 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -38,8 +37,8 @@
             android:id="@+id/icon"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            tools:srcCompat="@drawable/check"
-            android:contentDescription="@string/description_result_icon" />
+            android:contentDescription="@string/description_result_icon"
+            tools:srcCompat="@drawable/check" />
 
         <TextView
             android:id="@+id/message"
@@ -48,27 +47,27 @@
             android:gravity="center_horizontal|center_vertical"
             android:textAlignment="center"
             android:textSize="24sp"
-            tools:text="@string/success_message" />
+            tools:text="@string/msg_success" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/details_list"
+        android:id="@+id/list_details"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:itemCount="6"
-        tools:listitem="@layout/check_view_item" />
+        tools:listitem="@layout/item_check_view" />
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

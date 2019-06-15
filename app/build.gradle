@@ -37,17 +37,19 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+
             def admobAppId = admobProperties['appId']
             manifestPlaceholders = [admobAppId: admobAppId]
-            buildConfigField("String", "ADMOB_APP_ID", "\"$admobAppId\"")
-            resValue "string", "banner_ad_unit_id", admobProperties['bannerAdUnitId']
+            buildConfigField 'String', 'ADMOB_APP_ID', "\"$admobAppId\""
+            resValue 'string', 'banner_ad_unit_id', admobProperties['bannerAdUnitId']
         }
         debug {
             applicationIdSuffix '.test'
             versionNameSuffix '-test'
-            manifestPlaceholders = [admobAppId: "ca-app-pub-3940256099942544~3347511713"]
-            buildConfigField("String", "ADMOB_APP_ID", "\"ca-app-pub-3940256099942544~3347511713\"")
-            resValue "string", "banner_ad_unit_id", "ca-app-pub-3940256099942544/6300978111"
+
+            manifestPlaceholders = [admobAppId: 'ca-app-pub-3940256099942544~3347511713']
+            buildConfigField 'String', 'ADMOB_APP_ID', "\"ca-app-pub-3940256099942544~3347511713\""
+            resValue 'string', 'banner_ad_unit_id', 'ca-app-pub-3940256099942544/6300978111'
         }
     }
 }
@@ -55,7 +57,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'com.google.android.gms:play-services-ads-lite:17.1.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+    implementation 'com.google.android.gms:play-services-ads-lite:17.2.1'
 }
