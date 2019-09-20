@@ -1,9 +1,10 @@
-package appinventor.ai_pavitragolchha.VR
+package tk.pavi2410.vrcc
 
 import android.app.ActivityManager
 import android.hardware.SensorManager
 import android.util.DisplayMetrics
 import android.view.WindowManager
+import kotlin.math.hypot
 
 /**
  * Created by Pavitra on 08-03-2018.
@@ -18,7 +19,7 @@ class PhoneInfo(
     fun getScreenSize() = with(getDisplayMetrics()) {
         val wi = widthPixels / xdpi // width in inches
         val hi = heightPixels / ydpi // height in inches
-        Math.hypot(wi.toDouble(), hi.toDouble())
+        hypot(wi.toDouble(), hi.toDouble())
     }
 
     fun getRam() = with(ActivityManager.MemoryInfo()) {

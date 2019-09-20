@@ -1,4 +1,4 @@
-package appinventor.ai_pavitragolchha.VR
+package tk.pavi2410.vrcc
 
 import android.app.ActivityManager
 import android.content.Context
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
         setSupportActionBar(toolbar)
 
@@ -40,19 +40,43 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
          */
         if (accelerometer and gyro and (screenSize >= 5) and (ram >= 2.GB)) {
             message.text = getString(R.string.msg_success)
-            icon.setImageResource(R.drawable.check)
+            img_icon.setImageResource(R.drawable.check)
         } else {
             message.text = getString(R.string.msg_fail)
-            icon.setImageResource(R.drawable.cross)
+            img_icon.setImageResource(R.drawable.cross)
         }
 
         val results = listOf(
-                Item("Accelerometer", accelerometer),
-                Item("Compass", compass),
-                Item("Gyroscope", gyro),
-                Item("Screen Size", screenSize >= 5.0),
-                Item("RAM", ram >= 2.GB),
-                Item("Android Version", true)
+                Item(
+                        icon = R.drawable.accelerometer,
+                        name = R.string.accelerometer,
+                        result = accelerometer
+                ),
+                Item(
+                        icon = R.drawable.compass,
+                        name = R.string.compass,
+                        result = compass
+                ),
+                Item(
+                        icon = R.drawable.gyroscope,
+                        name = R.string.gyroscope,
+                        result = gyro
+                ),
+                Item(
+                        icon = R.drawable.screen_size,
+                        name = R.string.screen_size,
+                        result = screenSize >= 5.0
+                ),
+                Item(
+                        icon = R.drawable.ram,
+                        name = R.string.ram,
+                        result = ram >= 2.GB
+                ),
+                Item(
+                        icon = R.drawable.android_version,
+                        name = R.string.android_version,
+                        result = true
+                )
         )
 
         list_details.apply {
@@ -60,13 +84,28 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             adapter = DetailsListAdapter(results)
         }
 
-        // -- AdMob Integration --
+        // -- AdMob Integration Start --
 
         MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID)
 
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
+
+        // -- AdMob Integration End --
+    }
+
+    public override fun onPause() {
+        adView.pause()
+        super.onPause()
+    }
+
+    public override fun onResume() {
+        super.onResume()
+        adView.resume()
+    }
+
+    public override fun onDestroy() {
+        adView.destroy()
+        super.onDestroy()
     }
 }
-
-data class Item(val name: String, val value: Boolean)

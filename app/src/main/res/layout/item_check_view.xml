@@ -3,25 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:gravity="start"
-        android:textSize="24sp"
-        tools:text="@tools:sample/full_names" />
+        android:backgroundTint="@color/colorAccent">
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/the_icon_of_the_item"
+            tools:srcCompat="@drawable/android_version" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textSize="24sp"
+            tools:text="@string/android_version" />
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/value"
+        android:id="@+id/img_result"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:contentDescription="@string/the_result_of_the_item"
-        android:gravity="end"
         tools:srcCompat="@drawable/check" />
-
 </LinearLayout>
