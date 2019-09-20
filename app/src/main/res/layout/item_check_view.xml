@@ -3,35 +3,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:weightSum="6">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent">
+        android:layout_marginEnd="16dp"
+        android:layout_weight="5"
+        android:background="@drawable/item_bg_left"
+        android:gravity="center_vertical|start"
+        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <ImageView
-            android:id="@+id/img_icon"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:id="@+id/message_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:contentDescription="@string/the_icon_of_the_item"
+            android:scaleType="center"
+            android:tint="#1a73e8"
             tools:srcCompat="@drawable/android_version" />
 
         <TextView
             android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:textColor="#1a73e8"
             android:textSize="24sp"
             tools:text="@string/android_version" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img_result"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:contentDescription="@string/the_result_of_the_item"
-        tools:srcCompat="@drawable/check" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/item_bg_right"
+        android:gravity="center_vertical|end"
+        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageView
+            android:id="@+id/img_result"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/the_result_of_the_item"
+            tools:srcCompat="@drawable/check" />
+    </LinearLayout>
 </LinearLayout>

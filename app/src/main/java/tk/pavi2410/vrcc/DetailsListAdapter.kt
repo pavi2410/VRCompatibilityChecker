@@ -18,7 +18,7 @@ class DetailsListAdapter(private val items: List<Item>) : RecyclerView.Adapter<D
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: Item) = with(itemView) {
-            img_icon.setImageResource(item.icon)
+            message_icon.setImageResource(item.icon)
             txt_name.text = context.getString(item.name)
             val drawable = if (item.result) R.drawable.check else R.drawable.cross
             img_result.setImageResource(drawable)

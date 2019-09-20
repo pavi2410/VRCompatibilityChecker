@@ -39,11 +39,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
          * RAM >= 2 GB
          */
         if (accelerometer and gyro and (screenSize >= 5) and (ram >= 2.GB)) {
-            message.text = getString(R.string.msg_success)
-            img_icon.setImageResource(R.drawable.check)
+            message_text.setText(R.string.msg_success)
+            message_icon.setText(R.string.emoji_success)
         } else {
-            message.text = getString(R.string.msg_fail)
-            img_icon.setImageResource(R.drawable.cross)
+            message_text.setText(R.string.msg_fail)
+            message_icon.setText(R.string.emoji_fail)
         }
 
         val results = listOf(

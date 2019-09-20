@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">VR Compatibility Checker</string>
+    <string name="emoji_success">🥳</string>
+    <string name="emoji_fail">😢</string>
     <string name="msg_success">Congratulations! Your device is compatible</string>
     <string name="msg_fail">Oops! Your device is not compatible</string>
     <string name="description_result_icon">Result icon</string>
