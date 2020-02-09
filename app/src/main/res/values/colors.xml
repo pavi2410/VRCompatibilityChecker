@@ -8,6 +8,6 @@
     <color name="item_bg">#4DBBDEFB</color>
 
     <!--Reset to default on light theme-->
-    <color name="window_bg">@null</color>
+    <color name="window_bg">?android:attr/colorBackground</color>
     <color name="navbar">@null</color>
 </resources>
