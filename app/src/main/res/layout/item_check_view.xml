@@ -27,7 +27,7 @@
             android:layout_height="32dp"
             android:contentDescription="@string/the_icon_of_the_item"
             android:scaleType="center"
-            android:tint="#1a73e8"
+            android:tint="@color/item_text"
             tools:srcCompat="@drawable/android_version" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="#1a73e8"
+            android:textColor="@color/item_text"
             android:textSize="24sp"
             tools:text="@string/android_version" />
     </LinearLayout>

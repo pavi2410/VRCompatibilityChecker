@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">@color/item_bg</color>
+
+    <color name="item_text">#CCBBDEFB</color>
+    <color name="item_bg">#330D47A1</color>
+
+    <color name="window_bg">@android:color/black</color>
+    <color name="navbar">@android:color/black</color>
+</resources>

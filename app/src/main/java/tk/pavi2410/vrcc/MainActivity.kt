@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-
-        setSupportActionBar(toolbar)
 
         val accelerometer = phoneInfo.isSensorAvailable(TYPE_ACCELEROMETER)
         val compass = phoneInfo.isSensorAvailable(TYPE_GRAVITY)
@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         list_details.apply {
             setHasFixedSize(true)
+            suppressLayout(true)
             adapter = DetailsListAdapter(results)
         }
 
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID)
 
-        val adRequest = AdRequest.Builder().build()
+        val adRequest = AdRequest.Builder().addTestDevice("AF88EDD4F09A6206836CD7B57A8AE037").build()
         adView.loadAd(adRequest)
 
         // -- AdMob Integration End --
