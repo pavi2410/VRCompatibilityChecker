@@ -68,7 +68,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
     implementation("androidx.core:core-ktx:1.3.0")
     implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta6")
     implementation("androidx.recyclerview:recyclerview:1.2.0-alpha03")
     implementation("com.google.android.gms:play-services-ads-lite:19.1.0")
 }
