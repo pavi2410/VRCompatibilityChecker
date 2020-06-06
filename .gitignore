@@ -1,5 +1,6 @@
-# Created by https://www.gitignore.io/api/gradle,android,androidstudio
-# Edit at https://www.gitignore.io/?templates=gradle,android,androidstudio
+
+# Created by https://www.toptal.com/developers/gitignore/api/androidstudio,android,gradle
+# Edit at https://www.toptal.com/developers/gitignore?templates=androidstudio,android,gradle
 
 ### Android ###
 # Built application files
@@ -212,8 +213,8 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
-# End of https://www.gitignore.io/api/gradle,android,androidstudio
+# End of https://www.toptal.com/developers/gitignore/api/androidstudio,android,gradle
 
-# Secrets
-keystore.properties
+### Secrets ###
 admob.properties
+keystore.properties
