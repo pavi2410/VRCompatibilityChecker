@@ -1,14 +1,14 @@
 package tk.pavi2410.vrcc
 
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_check_view.view.*
+import tk.pavi2410.vrcc.databinding.ItemCheckViewBinding
 
 class DetailsListAdapter(private val items: List<Item>) : RecyclerView.Adapter<DetailsListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-            ViewHolder(parent.inflate(R.layout.item_check_view))
+            ViewHolder(ItemCheckViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
@@ -16,12 +16,11 @@ class DetailsListAdapter(private val items: List<Item>) : RecyclerView.Adapter<D
 
     override fun getItemCount() = items.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(item: Item) = with(itemView) {
-            message_icon.setImageResource(item.icon)
-            txt_name.text = context.getString(item.name)
-            val drawable = if (item.result) R.drawable.check else R.drawable.cross
-            img_result.setImageResource(drawable)
+    class ViewHolder(private val binding: ItemCheckViewBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Item) = with(binding) {
+            messageIcon.setImageResource(item.icon)
+            txtName.text = itemView.context.getString(item.name)
+            imgResult.setImageResource(if (item.result) R.drawable.check else R.drawable.cross)
         }
     }
 }

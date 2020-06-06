@@ -36,9 +36,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
 
-            val admobAppId = admobProps.getProperty("appId")
-            manifestPlaceholders = mapOf("admobAppId" to admobAppId)
-            buildConfigField("String", "ADMOB_APP_ID", "\"$admobAppId\"")
+            manifestPlaceholders = mapOf("admobAppId" to admobProps.getProperty("appId"))
             resValue("string", "banner_ad_unit_id", admobProps.getProperty("bannerAdUnitId"))
         }
         getByName("debug") {
@@ -46,13 +44,11 @@ android {
             versionNameSuffix = "-test"
 
             manifestPlaceholders = mapOf("admobAppId" to "ca-app-pub-3940256099942544~3347511713")
-            buildConfigField("String", "ADMOB_APP_ID", "\"ca-app-pub-3940256099942544~3347511713\"")
             resValue("string", "banner_ad_unit_id", "ca-app-pub-3940256099942544/6300978111")
         }
     }
 
     sourceSets["main"].java.srcDir("src/main/kotlin")
-
 
     buildFeatures {
         viewBinding = true
