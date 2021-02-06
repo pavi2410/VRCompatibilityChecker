@@ -2,18 +2,18 @@ import java.util.Properties
 
 plugins {
     id("com.android.application")
-    kotlin("android")
+    kotlin("android")// version "1.4.30"
 }
 
 val keystoreProps by lazy { loadProps("keystore.properties") }
-val admobProps by lazy { loadProps("admob.properties") }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(30)
+    buildToolsVersion("30.0.3")
 
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(29)
+        targetSdkVersion(30)
 
         applicationId = "appinventor.ai_pavitragolchha.VR"
         versionCode = 16
@@ -35,16 +35,6 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
-
-            manifestPlaceholders = mapOf("admobAppId" to admobProps.getProperty("appId"))
-            resValue("string", "banner_ad_unit_id", admobProps.getProperty("bannerAdUnitId"))
-        }
-        getByName("debug") {
-            applicationIdSuffix = ".test"
-            versionNameSuffix = "-test"
-
-            manifestPlaceholders = mapOf("admobAppId" to "ca-app-pub-3940256099942544~3347511713")
-            resValue("string", "banner_ad_unit_id", "ca-app-pub-3940256099942544/6300978111")
         }
     }
 
@@ -65,11 +55,10 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
-    implementation("androidx.core:core-ktx:1.3.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.recyclerview:recyclerview:1.2.0-alpha03")
-    implementation("com.google.android.gms:play-services-ads-lite:19.1.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.30")
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
 }
 
 fun loadProps(filename: String) = Properties().apply {

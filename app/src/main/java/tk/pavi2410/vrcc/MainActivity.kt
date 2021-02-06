@@ -7,9 +7,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.getSystemService
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
 import tk.pavi2410.vrcc.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +28,6 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
         initUI()
-
-        initAdView()
     }
 
     private fun initUI() {
@@ -97,31 +92,6 @@ class MainActivity : AppCompatActivity() {
             adapter = DetailsListAdapter(results)
         }
     }
-
-    private fun initAdView() {
-        MobileAds.initialize(this)
-
-        val testDeviceRC = RequestConfiguration.Builder().setTestDeviceIds(listOf("AF88EDD4F09A6206836CD7B57A8AE037")).build()
-        MobileAds.setRequestConfiguration(testDeviceRC)
-
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
-    }
-
-    public override fun onPause() {
-        binding.adView.pause()
-        super.onPause()
-    }
-
-    public override fun onResume() {
-        super.onResume()
-        binding.adView.resume()
-    }
-
-    public override fun onDestroy() {
-        binding.adView.destroy()
-        super.onDestroy()
-    }
 }
 
-val Int.GB get() = this * 1_000_000_000
+private val Int.GB get() = this * 1_000_000_000
