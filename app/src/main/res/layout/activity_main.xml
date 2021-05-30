@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:text="@string/app_name"
             android:textColor="@color/item_text"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
