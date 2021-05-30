@@ -1,20 +1,12 @@
 package me.pavi2410.vrcc
 
-import android.app.ActivityManager
 import android.hardware.Sensor.*
-import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.getSystemService
 import me.pavi2410.vrcc.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    private val sensorManager by lazy { getSystemService<SensorManager>()!! }
-    private val activityManager by lazy { getSystemService<ActivityManager>()!! }
-
-    private val phoneInfo by lazy { PhoneInfo(sensorManager, activityManager, windowManager) }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -22,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
@@ -31,20 +22,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        val accelerometer = phoneInfo.isSensorAvailable(TYPE_ACCELEROMETER)
-        val compass = phoneInfo.isSensorAvailable(TYPE_GRAVITY)
-        val gyro = phoneInfo.isSensorAvailable(TYPE_GYROSCOPE)
+        val phoneInfo = PhoneInfo(this, windowManager)
+
+        val hasAccelerometer = phoneInfo.isSensorAvailable(TYPE_ACCELEROMETER)
+        val hasCompass = phoneInfo.isSensorAvailable(TYPE_GRAVITY)
+        val hasGyro = phoneInfo.isSensorAvailable(TYPE_GYROSCOPE)
         val screenSize = phoneInfo.getScreenSize()
         val ram = phoneInfo.getRam()
 
-        /*
+        /* COMPATIBILITY CRITERIA
+         * ------------------------
          * Accelerometer = required
          * Gyro = required
          * Screen Size >= 5"
          * Android >= Lollipop (API 21) == Min SDK version
          * RAM >= 2 GB
          */
-        if (accelerometer and gyro and (screenSize >= 5.0) and (ram >= 2.GB)) {
+        if (hasAccelerometer and hasGyro and (screenSize >= 5.0) and (ram >= 2.GB)) {
             binding.messageText.setText(R.string.msg_success)
             binding.messageIcon.setText(R.string.emoji_success)
         } else {
@@ -56,17 +50,17 @@ class MainActivity : AppCompatActivity() {
                 Item(
                         icon = R.drawable.accelerometer,
                         name = R.string.accelerometer,
-                        result = accelerometer
+                        result = hasAccelerometer
                 ),
                 Item(
                         icon = R.drawable.compass,
                         name = R.string.compass,
-                        result = compass
+                        result = hasCompass
                 ),
                 Item(
                         icon = R.drawable.gyroscope,
                         name = R.string.gyroscope,
-                        result = gyro
+                        result = hasGyro
                 ),
                 Item(
                         icon = R.drawable.screen_size,
