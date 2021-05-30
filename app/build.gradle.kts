@@ -2,7 +2,7 @@ import java.util.Properties
 
 plugins {
     id("com.android.application")
-    kotlin("android")// version "1.4.30"
+    kotlin("android")
 }
 
 val keystoreProps by lazy { loadProps("keystore.properties") }
@@ -38,8 +38,6 @@ android {
         }
     }
 
-    sourceSets["main"].java.srcDir("src/main/kotlin")
-
     buildFeatures {
         viewBinding = true
     }
@@ -55,10 +53,10 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.30")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.10")
+    implementation("androidx.core:core-ktx:1.5.0")
+    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.0")
 }
 
 fun loadProps(filename: String) = Properties().apply {
