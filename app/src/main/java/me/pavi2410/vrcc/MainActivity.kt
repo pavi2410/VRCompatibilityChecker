@@ -1,4 +1,4 @@
-package tk.pavi2410.vrcc
+package me.pavi2410.vrcc
 
 import android.app.ActivityManager
 import android.hardware.Sensor.*
@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.getSystemService
-import tk.pavi2410.vrcc.databinding.ActivityMainBinding
+import me.pavi2410.vrcc.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

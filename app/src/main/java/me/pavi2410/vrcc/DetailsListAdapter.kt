@@ -1,9 +1,9 @@
-package tk.pavi2410.vrcc
+package me.pavi2410.vrcc
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tk.pavi2410.vrcc.databinding.ItemCheckViewBinding
+import me.pavi2410.vrcc.databinding.ItemCheckViewBinding
 
 class DetailsListAdapter(private val items: List<Item>) : RecyclerView.Adapter<DetailsListAdapter.ViewHolder>() {
 

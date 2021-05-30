@@ -1,4 +1,4 @@
-package tk.pavi2410.vrcc
+package me.pavi2410.vrcc
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
