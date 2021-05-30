@@ -94,4 +94,4 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-private val Int.GB get() = this * 1_000_000_000
+private inline val Int.GB get() = this * 1_000_000_000
