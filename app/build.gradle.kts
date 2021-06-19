@@ -16,8 +16,8 @@ android {
         targetSdkVersion(30)
 
         applicationId = "appinventor.ai_pavitragolchha.VR"
-        versionCode = 16
-        versionName = "8.1"
+        versionCode = 17
+        versionName = "9.0"
     }
 
     signingConfigs {
