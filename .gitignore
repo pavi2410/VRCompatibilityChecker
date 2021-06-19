@@ -218,3 +218,5 @@ gradle-app.setting
 ### Secrets ###
 admob.properties
 keystore.properties
+private_key.pepk
+upload_certificate.pem
