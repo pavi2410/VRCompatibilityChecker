@@ -5,19 +5,21 @@ plugins {
     kotlin("android")
 }
 
+val composeVersion by extra { "1.0.1" }
+
 val keystoreProps by lazy { loadProps("keystore.properties") }
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion("30.0.3")
+    compileSdk = 30
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(30)
-
+        minSdk = 21
+        targetSdk = 30
         applicationId = "appinventor.ai_pavitragolchha.VR"
         versionCode = 17
         versionName = "9.0"
+
+        resourceConfigurations += setOf("en")
     }
 
     signingConfigs {
@@ -39,7 +41,15 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        compose = true
+        // Turn off unnecessary things
+        aidl = false
+        buildConfig = false
+        resValues = false
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = composeVersion
     }
 
     compileOptions {
@@ -50,13 +60,17 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    lint {
+        isCheckReleaseBuilds = false
+    }
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.10")
-    implementation("androidx.core:core-ktx:1.5.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("androidx.recyclerview:recyclerview:1.2.0")
+    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
 }
 
 fun loadProps(filename: String) = Properties().apply {

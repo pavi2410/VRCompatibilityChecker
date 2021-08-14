@@ -12,12 +12,10 @@ import kotlin.math.roundToInt
 /**
  * Created by Pavitra on 08-03-2018.
  */
-class PhoneInfo(
-        context: Context,
-        private val windowManager: WindowManager,
-) {
-    private val sensorManager = context.getSystemService<SensorManager>()!!
-    private val activityManager = context.getSystemService<ActivityManager>()!!
+class PhoneInfo(context: Context) {
+    private val sensorManager: SensorManager = context.getSystemService()!!
+    private val activityManager: ActivityManager = context.getSystemService()!!
+    private val windowManager: WindowManager = context.getSystemService()!!
 
     fun isSensorAvailable(sensor: Int) = sensorManager.getSensorList(sensor).isNotEmpty()
 
