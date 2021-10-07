@@ -34,4 +34,4 @@ Learn how to make Google Cardboard | Turn your boring Smartphone into cool VR he
 ## Screenshots
 Dark Theme | Light Theme
 --- | ---
-![dark theme](screenshots/dark.jpg) | ![light theme](screenshots/light.jpg)
+![dark theme](screenshots/dark.png) | ![light theme](screenshots/light.png)
