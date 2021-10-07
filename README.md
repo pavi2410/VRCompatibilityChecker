@@ -2,6 +2,8 @@
 
 <a href='https://play.google.com/store/apps/details?id=appinventor.ai_pavitragolchha.VR&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height=100/></a>
 
+![downloads badge](https://PlayBadges.pavi2410.me/badge/downloads?id=appinventor.ai_pavitragolchha.VR&style=for-the-badge) ![ratings badge](https://PlayBadges.pavi2410.me/badge/ratings?id=appinventor.ai_pavitragolchha.VR&style=for-the-badge)
+
 ---
 
 Check if your device's ready for VR in a simple way.
