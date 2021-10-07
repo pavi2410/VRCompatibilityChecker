@@ -1,6 +1,6 @@
 package me.pavi2410.vrcc.models
 
-data class ResultModel(
-    val isCompatible: Pair<Int, Int>,
+class Results(
+    val isCompatible: Boolean,
     val detailModel: List<DetailModel>
 )

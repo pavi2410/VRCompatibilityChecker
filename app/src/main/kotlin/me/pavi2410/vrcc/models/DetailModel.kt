@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 
 data class DetailModel(
     @DrawableRes val icon: Int,
-    @StringRes val name: Int,
+    val name: String,
     val result: Boolean,
     val detail: String? = null
 )

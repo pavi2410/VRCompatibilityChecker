@@ -35,7 +35,10 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -52,15 +55,6 @@ android {
         kotlinCompilerExtensionVersion = composeVersion
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
     lint {
         isCheckReleaseBuilds = false
     }
@@ -71,6 +65,8 @@ dependencies {
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.19.0")
+    implementation("com.google.accompanist:accompanist-insets:0.19.0")
 }
 
 fun loadProps(filename: String) = Properties().apply {
