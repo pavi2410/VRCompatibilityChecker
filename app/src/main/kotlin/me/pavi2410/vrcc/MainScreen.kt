@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.insets.statusBarsHeight
 import me.pavi2410.vrcc.models.DetailModel
+import me.pavi2410.vrcc.models.Results
 import me.pavi2410.vrcc.ui.checkIcon
 import me.pavi2410.vrcc.ui.crossIcon
 import me.pavi2410.vrcc.ui.greenA400
@@ -51,60 +52,36 @@ fun MainScreen(mvm: MainViewModel) {
             )
         }
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(vertical = 32.dp, horizontal = 16.dp)
-        ) {
-            Text(
-                text = if (results.isCompatible) "🥳" else "😢",
-                fontSize = 64.sp,
-                color = MaterialTheme.colors.onBackground
-            )
-            Spacer(Modifier.width(8.dp))
-            Text(
-                text = if (results.isCompatible) "Congratulations! Your device is compatible" else "Oops! Your device is not compatible",
-                fontSize = 32.sp,
-                color = MaterialTheme.colors.onBackground,
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
+        MainContent(results)
+    }
+}
 
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            items(results.detailModel) { model ->
-                DetailRow(model)
-            }
-        }
+@Composable
+fun MainContent(results: Results) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(vertical = 32.dp, horizontal = 16.dp)
+    ) {
+        Text(
+            text = if (results.isCompatible) "🥳" else "😢",
+            fontSize = 64.sp,
+            color = MaterialTheme.colors.onBackground
+        )
+        Spacer(Modifier.width(8.dp))
+        Text(
+            text = if (results.isCompatible) "Congratulations! Your device is compatible" else "Oops! Your device is not compatible",
+            fontSize = 32.sp,
+            color = MaterialTheme.colors.onBackground,
+            fontWeight = FontWeight.ExtraBold
+        )
+    }
 
-//      Column(
-//          modifier = Modifier
-//              .fillMaxWidth(.75f)
-//              .background(
-//                  Color(0x4DBBDEFB),
-//                  RoundedCornerShape(10)
-//              )
-//              .padding(16.dp)
-//      ) {
-//          Text(buildAnnotatedString {
-//              val text = "Made with ❤️ by "
-//              val offset = text.length - 1
-//
-//              append(text)
-//              withStyle(
-//                  SpanStyle(
-//                      color = MaterialTheme.colors.onPrimary,
-//                      textDecoration = TextDecoration.Underline
-//                  )
-//              ) {
-//                  append("pavi2410")
-//                  addStringAnnotation("URL", "https://pavi2410.me", offset, offset + 8)
-//              }
-//          })
-//          Text("View Source")
-//          Text("Please rate this app ⭐⭐⭐⭐⭐")
-//          ClickableText(text =, onClick =)
-//      }
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        items(results.detailModel, key = { it.name }) { model ->
+            DetailRow(model)
+        }
     }
 }
 
