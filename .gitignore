@@ -216,7 +216,6 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,android,gradle
 
 ### Secrets ###
-admob.properties
 keystore.properties
 private_key.pepk
 upload_certificate.pem

@@ -5,16 +5,16 @@ plugins {
     kotlin("android")
 }
 
-val composeVersion by extra { "1.0.1" }
+val composeVersion by extra { "1.0.5" }
 
 val keystoreProps by lazy { loadProps("keystore.properties") }
 
 android {
-    compileSdk = 30
+    compileSdk = 31
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 30
+        targetSdk = 31
         applicationId = "appinventor.ai_pavitragolchha.VR"
         versionCode = 17
         versionName = "9.0"
@@ -55,16 +55,23 @@ android {
         kotlinCompilerExtensionVersion = composeVersion
     }
 
+    packagingOptions {
+        resources {
+            excludes += setOf("/META-INF/{AL2.0,LGPL2.1}")
+        }
+    }
+
     lint {
         isCheckReleaseBuilds = false
     }
 }
 
 dependencies {
-    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.activity:activity-compose:1.4.0")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.19.0")
     implementation("com.google.accompanist:accompanist-insets:0.19.0")
 }

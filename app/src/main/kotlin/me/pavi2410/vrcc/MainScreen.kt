@@ -1,56 +1,59 @@
 package me.pavi2410.vrcc
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.insets.statusBarsHeight
+import com.google.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 import me.pavi2410.vrcc.models.DetailModel
 import me.pavi2410.vrcc.models.Results
-import me.pavi2410.vrcc.ui.checkIcon
-import me.pavi2410.vrcc.ui.crossIcon
-import me.pavi2410.vrcc.ui.greenA400
-import me.pavi2410.vrcc.ui.red500
+import me.pavi2410.vrcc.ui.Colors
+import me.pavi2410.vrcc.ui.Icons
 
 @Composable
-fun MainScreen(mvm: MainViewModel) {
-    val results = mvm.results
+fun MainScreen() {
+    val results = computeCompatibilityResults()
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
+            .navigationBarsPadding()
     ) {
-
-        Spacer(
-            Modifier
-                .statusBarsHeight()
-                .fillMaxWidth()
+        Text(
+            text = "VR Compatibility Checker",
+            textAlign = TextAlign.Start,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 24.sp,
+            color = MaterialTheme.colors.primary,
+            modifier = Modifier.padding(8.dp)
         )
-
-        TopAppBar(backgroundColor = Color.Transparent, elevation = 0.dp) {
-            Text(
-                text = "VR Compatibility Checker",
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp,
-                color = MaterialTheme.colors.primary,
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
 
         MainContent(results)
     }
@@ -58,30 +61,47 @@ fun MainScreen(mvm: MainViewModel) {
 
 @Composable
 fun MainContent(results: Results) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 32.dp, horizontal = 16.dp)
-    ) {
-        Text(
-            text = if (results.isCompatible) "🥳" else "😢",
-            fontSize = 64.sp,
-            color = MaterialTheme.colors.onBackground
-        )
-        Spacer(Modifier.width(8.dp))
-        Text(
-            text = if (results.isCompatible) "Congratulations! Your device is compatible" else "Oops! Your device is not compatible",
-            fontSize = 32.sp,
-            color = MaterialTheme.colors.onBackground,
-            fontWeight = FontWeight.ExtraBold
-        )
-    }
-
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
+        item {
+            ResultMessage(results.isCompatible)
+        }
+
         items(results.detailModel, key = { it.name }) { model ->
             DetailRow(model)
         }
+
+        item {
+            AboutThisApp()
+        }
+    }
+}
+
+@Composable
+fun ResultMessage(isCompatible: Boolean) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Image(
+            painterResource(
+                id = if (isCompatible)
+                    R.drawable.party_face
+                else
+                    R.drawable.loudly_crying_face
+            ),
+            null,
+            modifier = Modifier.size(96.dp)
+        )
+        Spacer(Modifier.width(8.dp))
+        Text(
+            text = if (isCompatible)
+                "Congratulations!!! Your device is VR compatible"
+            else
+                "Oops... Your device is not VR compatible",
+            style = MaterialTheme.typography.h5
+        )
     }
 }
 
@@ -89,57 +109,163 @@ fun MainContent(results: Results) {
 fun DetailRow(model: DetailModel) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp, 8.dp)
     ) {
         Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .background(
-                    MaterialTheme.colors.secondary,
-                    RoundedCornerShape(topEndPercent = 50, bottomEndPercent = 50)
-                )
-                .padding(16.dp, 8.dp)
                 .weight(1f)
         ) {
             Icon(
-                painterResource(model.icon), null,
-                tint = MaterialTheme.colors.onSecondary,
-                modifier = Modifier.size(32.dp)
+                model.icon, null,
+                tint = Color.White,
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(model.iconColor, shape = RoundedCornerShape(8.dp))
+                    .padding(4.dp)
             )
-            Spacer(Modifier.width(16.dp))
+            Spacer(Modifier.width(8.dp))
             Text(
                 text = model.name,
-                fontSize = 24.sp,
-                color = MaterialTheme.colors.onSecondary,
-                textAlign = TextAlign.Center
+                fontSize = 22.sp
             )
+            Spacer(Modifier.width(8.dp))
             model.detail?.let {
                 Text(
                     text = model.detail,
-                    fontSize = 16.sp,
-                    color = Color(0xFF1976D2),
-                    textAlign = TextAlign.Center
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colors.onSecondary,
+                    modifier = Modifier
+                        .background(
+                            MaterialTheme.colors.secondary,
+                            RoundedCornerShape(50)
+                        )
+                        .padding(6.dp, 4.dp)
                 )
+
             }
         }
 
         if (model.result) {
             Icon(
-                imageVector = checkIcon,
-                tint = greenA400,
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .size(32.dp)
+                Icons.Check, null,
+                tint = Colors.Green500,
+                modifier = Modifier.size(32.dp)
             )
         } else {
             Icon(
-                imageVector = crossIcon,
-                tint = red500,
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .size(32.dp)
+                Icons.Cross, null,
+                tint = Colors.Red500,
+                modifier = Modifier.size(32.dp)
             )
+        }
+    }
+}
+
+@Composable
+fun AboutThisApp() {
+    val uriHandler = LocalUriHandler.current
+
+    Card(
+        border = BorderStroke(Dp.Hairline, Color.DarkGray),
+        elevation = 0.dp,
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                "Created By Pavitra (@pavi2410)",
+                style = MaterialTheme.typography.body1
+            )
+
+            ClickableText(
+                text = AnnotatedString(
+                    text = "Rate this app ⭐⭐⭐⭐⭐",
+                    spanStyle = SpanStyle(color = MaterialTheme.colors.onSecondary)
+                ),
+                style = MaterialTheme.typography.body1
+            ) {
+                uriHandler.openUri("https://play.google.com/store/apps/details?id=appinventor.ai_pavitragolchha.VR")
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                val annotatedString = buildAnnotatedString {
+                    pushStringAnnotation(
+                        tag = "about-me",
+                        annotation = "https://pavi2410.me"
+                    )
+                    withStyle(style = SpanStyle(color = MaterialTheme.colors.onSecondary)) {
+                        append("About me")
+                    }
+
+                    withStyle(style = SpanStyle(color = MaterialTheme.colors.onBackground)) {
+                        append(" • ")
+                    }
+
+                    pushStringAnnotation(
+                        tag = "view-source",
+                        annotation = "https://github.com/pavi2410/VRCompatibilityChecker"
+                    )
+                    withStyle(style = SpanStyle(color = MaterialTheme.colors.onSecondary)) {
+                        append("View Source")
+                    }
+
+                    withStyle(style = SpanStyle(color = MaterialTheme.colors.onBackground)) {
+                        append(" • ")
+                    }
+
+                    pushStringAnnotation(
+                        tag = "privacy-policy",
+                        annotation = "https://pavi2410.github.io/privacy_policy/VR"
+                    )
+
+                    withStyle(style = SpanStyle(color = MaterialTheme.colors.onSecondary)) {
+                        append("Privacy Policy")
+                    }
+
+                    pop()
+                }
+
+                ClickableText(
+                    text = annotatedString,
+                    style = MaterialTheme.typography.body1
+                ) { offset ->
+                    annotatedString.getStringAnnotations(
+                        tag = "about-me",
+                        start = offset,
+                        end = offset
+                    ).firstOrNull()?.let {
+                        uriHandler.openUri(it.item)
+                    }
+
+                    annotatedString.getStringAnnotations(
+                        tag = "view-source",
+                        start = offset,
+                        end = offset
+                    ).firstOrNull()?.let {
+                        uriHandler.openUri(it.item)
+                    }
+
+                    annotatedString.getStringAnnotations(
+                        tag = "privacy-policy",
+                        start = offset,
+                        end = offset
+                    ).firstOrNull()?.let {
+                        uriHandler.openUri(it.item)
+                    }
+                }
+            }
         }
     }
 }
