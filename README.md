@@ -1,10 +1,10 @@
+![banner](screenshots/banner.jpeg)
+
+<img src="screenshots/icon.png" height=96 align="left" alt="icon" />
+
 # VR Compatibility Checker — Fast & Accurate
 
-<a href="https://play.google.com/store/apps/details?id=appinventor.ai_pavitragolchha.VR"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height=100/></a>
-
-![downloads badge](https://PlayBadges.pavi2410.me/badge/downloads?id=appinventor.ai_pavitragolchha.VR&style=for-the-badge) ![ratings badge](https://PlayBadges.pavi2410.me/badge/ratings?id=appinventor.ai_pavitragolchha.VR&style=for-the-badge)
-
----
+![downloads badge](https://playbadges.pavi2410.me/badge/downloads?id=appinventor.ai_pavitragolchha.VR&style=for-the-badge&pretty) ![ratings badge](https://playbadges.pavi2410.me/badge/ratings?id=appinventor.ai_pavitragolchha.VR&style=for-the-badge)
 
 Check if your device's ready for VR in a simple way. Use this app to find out whether your phone supports VR or not. Known to detect compatibility with Samsung Gear VR, HTC Vive, Oculus Rift, Google Cardboard and many other leading VR headsets. This app is used to check whether your phone supports gyroscope sensor or not, which is used for full compatibility of VR. Without a gyroscope sensor, you can use VR, but with limited functionality.
 
