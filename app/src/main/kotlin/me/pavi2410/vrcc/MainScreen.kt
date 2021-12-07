@@ -227,7 +227,7 @@ fun AboutThisApp() {
 
                     pushStringAnnotation(
                         tag = "privacy-policy",
-                        annotation = "https://pavi2410.github.io/privacy_policy/VR"
+                        annotation = "https://pavi2410.me/privacy_policy/VR"
                     )
 
                     withStyle(style = SpanStyle(color = MaterialTheme.colors.onSecondary)) {
