@@ -1,6 +1,6 @@
-![banner](screenshots/banner.jpeg)
+[![banner](screenshots/banner.jpeg)][play store link]
 
-<img src="screenshots/icon.png" height=96 align="left" alt="icon" />
+[<img src="screenshots/icon.png" height=96 align="left" alt="icon" />][play store link]
 
 # VR Compatibility Checker — Fast & Accurate
 
@@ -32,3 +32,5 @@ Dark Theme | Light Theme
 - Android
 - Kotlin
 - Jetpack Compose
+
+[play store link]: https://play.google.com/store/apps/details?id=appinventor.ai_pavitragolchha.VR
