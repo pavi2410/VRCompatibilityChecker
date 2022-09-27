@@ -28,8 +28,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
 import me.pavi2410.vrcc.models.DetailModel
 import me.pavi2410.vrcc.models.Results
 import me.pavi2410.vrcc.ui.Colors

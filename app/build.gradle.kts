@@ -75,7 +75,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.19.0")
-    implementation("com.google.accompanist:accompanist-insets:0.19.0")
 }
 
 fun loadProps(filename: String) = Properties().apply {
