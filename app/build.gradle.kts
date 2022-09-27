@@ -5,17 +5,15 @@ plugins {
     kotlin("android")
 }
 
-val composeVersion by extra { "1.0.5" }
-
 val keystoreProps by lazy { loadProps("keystore.properties") }
 
 android {
     namespace = "me.pavi2410.vrcc"
-    compileSdk = 31
+    compileSdk = 32
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 31
+        targetSdk = 32
         applicationId = "appinventor.ai_pavitragolchha.VR"
         versionCode = 18
         versionName = "10.0"
@@ -53,7 +51,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = composeVersion
+        kotlinCompilerExtensionVersion = "1.3.1"
     }
 
     packagingOptions {
@@ -67,9 +65,12 @@ android {
     }
 }
 
+val composeVersion = "1.2.1"
+
 dependencies {
     implementation("androidx.activity:activity-compose:1.4.0")
     implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.foundation:foundation:$composeVersion")
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
