@@ -10,6 +10,7 @@ val composeVersion by extra { "1.0.5" }
 val keystoreProps by lazy { loadProps("keystore.properties") }
 
 android {
+    namespace = "me.pavi2410.vrcc"
     compileSdk = 31
 
     defaultConfig {
@@ -62,7 +63,7 @@ android {
     }
 
     lint {
-        isCheckReleaseBuilds = false
+        checkReleaseBuilds = false
     }
 }
 
