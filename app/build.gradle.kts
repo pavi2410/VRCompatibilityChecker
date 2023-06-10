@@ -9,11 +9,11 @@ val keystoreProps by lazy { loadProps("keystore.properties") }
 
 android {
     namespace = "me.pavi2410.vrcc"
-    compileSdk = 32
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
         applicationId = "appinventor.ai_pavitragolchha.VR"
         versionCode = 18
         versionName = "10.0"
@@ -51,10 +51,10 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.1"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes += setOf("/META-INF/{AL2.0,LGPL2.1}")
         }
@@ -63,18 +63,29 @@ android {
     lint {
         checkReleaseBuilds = false
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
-val composeVersion = "1.2.1"
-
 dependencies {
-    implementation("androidx.activity:activity-compose:1.4.0")
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.foundation:foundation:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.19.0")
+    val composeBom = platform("androidx.compose:compose-bom:2023.06.00")
+    implementation(composeBom)
+
+    // Material Design 2
+    implementation("androidx.compose.material:material")
+
+    // Android Studio Preview support
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+    implementation("androidx.activity:activity-compose:1.7.2")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 }
 
 fun loadProps(filename: String) = Properties().apply {

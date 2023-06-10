@@ -39,12 +39,11 @@ fun VrccTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable (
         shapes = shapes
     ) {
         val systemUiController = rememberSystemUiController()
-        val useDarkIcons = MaterialTheme.colors.isLight
 
         SideEffect {
             systemUiController.setSystemBarsColor(
                 color = Color.Transparent,
-                darkIcons = useDarkIcons
+                darkIcons = !darkTheme
             )
         }
 
