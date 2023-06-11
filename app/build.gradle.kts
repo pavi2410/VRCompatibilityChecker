@@ -15,8 +15,8 @@ android {
         minSdk = 21
         targetSdk = 33
         applicationId = "appinventor.ai_pavitragolchha.VR"
-        versionCode = 18
-        versionName = "10.0"
+        versionCode = 19
+        versionName = "10.1"
 
         resourceConfigurations += setOf("en")
     }
