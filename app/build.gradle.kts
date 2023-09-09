@@ -5,7 +5,7 @@ plugins {
     kotlin("android")
 }
 
-val keystoreProps by lazy { loadProps("keystore.properties") }
+val keystoreProps by lazy { loadProps("D:/App Inventor/keystore.properties") }
 
 android {
     namespace = "me.pavi2410.vrcc"
@@ -15,8 +15,8 @@ android {
         minSdk = 21
         targetSdk = 33
         applicationId = "appinventor.ai_pavitragolchha.VR"
-        versionCode = 19
-        versionName = "10.1"
+        versionCode = 20
+        versionName = "10.2"
 
         resourceConfigurations += setOf("en")
     }
