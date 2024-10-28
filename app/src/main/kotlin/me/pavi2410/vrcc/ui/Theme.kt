@@ -6,9 +6,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = Colors.Blue500,
@@ -38,15 +36,6 @@ fun VrccTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable (
         typography = typography,
         shapes = shapes
     ) {
-        val systemUiController = rememberSystemUiController()
-
-        SideEffect {
-            systemUiController.setSystemBarsColor(
-                color = Color.Transparent,
-                darkIcons = !darkTheme
-            )
-        }
-
         Surface(color = MaterialTheme.colors.background) {
             content()
         }

@@ -1,19 +1,21 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
 
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
 }
 
 val keystoreProps by lazy { loadProps("D:/App Inventor/keystore.properties") }
 
 android {
     namespace = "me.pavi2410.vrcc"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         applicationId = "appinventor.ai_pavitragolchha.VR"
         versionCode = 20
         versionName = "10.2"
@@ -50,10 +52,6 @@ android {
         resValues = false
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
-    }
-
     packaging {
         resources {
             excludes += setOf("/META-INF/{AL2.0,LGPL2.1}")
@@ -68,14 +66,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2023.06.00")
-    implementation(composeBom)
+    implementation(platform("androidx.compose:compose-bom:2024.10.00"))
 
     // Material Design 2
     implementation("androidx.compose.material:material")
@@ -84,8 +84,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
-    implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+    implementation("androidx.activity:activity-compose:1.9.3")
 }
 
 fun loadProps(filename: String) = Properties().apply {

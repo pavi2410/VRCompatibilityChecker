@@ -1,16 +1,23 @@
 package me.pavi2410.vrcc.ui
 
-import androidx.compose.material.icons.materialIcon
-import androidx.compose.material.icons.materialPath
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.addPathNodes
+import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.unit.dp
 
-private fun icon(name: String, fillColor: Color, pathData: String) = materialIcon(name) {
-    materialPath {
+private fun icon(name: String, fillColor: Color, pathData: String) = ImageVector.Builder(
+    name = name,
+    defaultWidth = 24.dp,
+    defaultHeight = 24.dp,
+    viewportWidth = 24f,
+    viewportHeight = 24f,
+).apply {
+    path {
         addPath(fill = SolidColor(fillColor), pathData = addPathNodes(pathData))
     }
-}
+}.build()
 
 object Icons {
     val Check = icon("check", Colors.Green500, "M9,16.17L4.83,12l-1.42,1.41L9,19 21,7l-1.41,-1.41z")
