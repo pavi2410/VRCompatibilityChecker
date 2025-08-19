@@ -6,6 +6,7 @@ import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.util.DisplayMetrics
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import kotlin.math.hypot
 import kotlin.math.roundToInt
@@ -21,8 +22,7 @@ class PhoneInfo(context: Context) {
     private fun isSensorAvailable(sensor: Int) = sensorManager.getSensorList(sensor).isNotEmpty()
 
     private val displayMetrics = DisplayMetrics().apply {
-        // TODO: Use new API
-        windowManager.defaultDisplay.getRealMetrics(this)
+        ContextCompat.getDisplayOrDefault(context).getRealMetrics(this)
     }
 
     val hasAccelerometer = isSensorAvailable(Sensor.TYPE_ACCELEROMETER)

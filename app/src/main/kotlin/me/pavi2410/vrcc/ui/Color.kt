@@ -15,6 +15,8 @@ object Colors {
     val Gray900 = Color(0xFF171717)
 
     // colors.red
+    val Red50 = Color(0xFFFFEBEE)
+    val Red100 = Color(0xFFFFCDD2)
     val Red500 = Color(0xFFEF4444)
     val Red700 = Color(0xFFB91C1C)
     val Red900 = Color(0xFF7F1D1D)
@@ -25,6 +27,9 @@ object Colors {
     val Yellow900 = Color(0xFF78350F)
 
     // colors.emerald
+    val Green50 = Color(0xFFE6F4EA)
+    val Green100 = Color(0xFFB2DFDB)
+    val Green200 = Color(0xFFA7F3D0)
     val Green500 = Color(0xFF10B981)
     val Green700 = Color(0xFF047857)
     val Green900 = Color(0xFF064E3B)
