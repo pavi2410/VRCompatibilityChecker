@@ -7,7 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
 }
 
-val keystoreProps by lazy { loadProps("D:/App Inventor/keystore.properties") }
+val keystoreProps by lazy { loadProps("/Users/pavi2410/AppInventor/keystore.properties") }
 
 android {
     namespace = "me.pavi2410.vrcc"
