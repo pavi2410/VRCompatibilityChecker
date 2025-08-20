@@ -17,8 +17,8 @@ android {
         minSdk = 21
         targetSdk = 35
         applicationId = "appinventor.ai_pavitragolchha.VR"
-        versionCode = 21
-        versionName = "10.3"
+        versionCode = 22
+        versionName = "11.0"
     }
 
     signingConfigs {
