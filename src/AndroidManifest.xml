@@ -10,7 +10,7 @@
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name="me.pavi2410.vrcc.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true">
             <intent-filter>

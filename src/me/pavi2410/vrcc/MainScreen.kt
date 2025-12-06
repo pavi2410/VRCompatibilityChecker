@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.sp
 import me.pavi2410.vrcc.models.DetailModel
 import me.pavi2410.vrcc.ui.Colors
 import me.pavi2410.vrcc.ui.Icons
+import appinventor.ai_pavitragolchha.VR.R
 
 @Composable
 fun MainScreen() {

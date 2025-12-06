@@ -1,0 +1,18 @@
+product: android/app
+
+dependencies:
+  - $compose.foundation
+  - $compose.material3
+  # Compose integration with Android activities
+  - androidx.activity:activity-compose:1.10.1
+
+settings:
+  android:
+    namespace: "appinventor.ai_pavitragolchha.VR"
+    versionCode: 23
+    versionName: "2025.12"
+    # signing:
+    #   enabled: true
+    #   propertiesFile: /Users/pavi2410/AppInventor/keystore.properties
+  compose: enabled
+  junit: junit-4
